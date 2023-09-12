@@ -18,21 +18,22 @@
                 </div>
 
 
-                <form>
+                <form action="{{ route('profile.update') }}" method="POST">
+                    @csrf
                     <div class="card-body">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Фамилия | Surname</label>
-                            <input name="surname" type="email" class="form-control"
+                            <input name="surname" type="text" class="form-control"
                                    placeholder="Enter surname" value="{{ $user->surname }}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Имя | Name</label>
-                            <input name="surname" type="email" class="form-control"
+                            <input name="name" type="text" class="form-control"
                                    placeholder="Enter name" value="{{ $user->name }}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Отчество | Patronymic</label>
-                            <input name="surname" type="email" class="form-control"
+                            <input name="patronymic" type="text" class="form-control"
                                    placeholder="Enter patronymic" value="{{ $user->patronymic }}">
                         </div>
                     </div>

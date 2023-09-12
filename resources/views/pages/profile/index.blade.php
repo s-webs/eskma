@@ -43,7 +43,7 @@
                     </div>
                     <br>
                     <br>
-                    <a href="{{ route('profile.edit', $user->id) }}" type="button"
+                    <a href="{{ route('profile.edit') }}" type="button"
                        class="btn btn-block btn-primary btn-lg">Редактировать
                         | Edit</a>
                 </div>
