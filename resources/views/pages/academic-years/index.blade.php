@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Факультеты</h1>
+                    <h1>Годы обучения</h1>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
-                                <a href="{{ route('faculties.create') }}" type="button"
+                                <a href="{{ route('academicYears.create') }}" type="button"
                                    class="btn btn-block btn-primary btn-lg">Создать</a>
                             </h3>
                         </div>
@@ -26,9 +26,8 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Название на казахском</th>
-                                    <th>Название на русском</th>
-                                    <th>Название на английском</th>
+                                    <th>Начало</th>
+                                    <th>Окончание</th>
                                     <th>Действия</th>
                                 </tr>
                                 </thead>
@@ -36,13 +35,12 @@
                                 @foreach($data as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ $item->name_kz }}</td>
-                                        <td>{{ $item->name_ru }}</td>
-                                        <td>{{ $item->name_en }}</td>
+                                        <td>{{ $item->start }}</td>
+                                        <td>{{ $item->end }}</td>
                                         <td>
-                                            <a href="{{ route('faculties.edit', $item->id) }}" type="button"
+                                            <a href="{{ route('academicYears.edit', $item->id) }}" type="button"
                                                class="btn btn bg-gradient-info btn-sm"><i class="fas fa-pen"></i></a>
-                                            <form action="{{ route('faculties.destroy', $item->id) }}" method="post"
+                                            <form action="{{ route('academicYears.destroy', $item->id) }}" method="post"
                                                   style="display: inline-block">
                                                 @csrf
                                                 @method('DELETE')

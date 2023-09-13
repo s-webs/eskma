@@ -4,15 +4,18 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('academi_years', function (Blueprint $table) {
+        Schema::create('educational_programs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('faculty_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->string('name_kz');
+            $table->string('name_ru');
+            $table->string('name_en');
             $table->timestamps();
         });
     }
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('academi_years');
+        Schema::dropIfExists('educational_programs');
     }
 };

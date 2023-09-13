@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AcademicYear;
 use Illuminate\Http\Request;
 
 class AcademicYears extends Controller
@@ -11,7 +12,8 @@ class AcademicYears extends Controller
      */
     public function index()
     {
-        //
+        $data = AcademicYear::all();
+        return view('pages.academic-years.index', compact('data'));
     }
 
     /**
@@ -19,7 +21,7 @@ class AcademicYears extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.academic-years.create');
     }
 
     /**
@@ -27,7 +29,12 @@ class AcademicYears extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = AcademicYear::create([
+            'start' => $request->start,
+            'end' => $request->end,
+        ]);
+
+        return redirect(route('academicYears.index'));
     }
 
     /**
@@ -43,7 +50,8 @@ class AcademicYears extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = AcademicYear::where('id', $id)->first();
+        return view('pages.academic-years.edit', compact('data'));
     }
 
     /**
@@ -51,7 +59,12 @@ class AcademicYears extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $years = AcademicYear::where('id', $id)->first();
+        $years->start = $request->start;
+        $years->end = $request->end;
+        $years->save();
+
+        return redirect(route('academicYears.index'));
     }
 
     /**
@@ -59,6 +72,9 @@ class AcademicYears extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $years = AcademicYear::where('id', $id)->first();
+        $years->delete();
+
+        return redirect(route('academicYears.index'));
     }
 }

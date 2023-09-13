@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Факультеты</h1>
+                    <h1>Образовательные программы</h1>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
-                                <a href="{{ route('faculties.create') }}" type="button"
+                                <a href="{{ route('educationalPrograms.create') }}" type="button"
                                    class="btn btn-block btn-primary btn-lg">Создать</a>
                             </h3>
                         </div>
@@ -29,6 +29,7 @@
                                     <th>Название на казахском</th>
                                     <th>Название на русском</th>
                                     <th>Название на английском</th>
+                                    <th>Факультет</th>
                                     <th>Действия</th>
                                 </tr>
                                 </thead>
@@ -39,10 +40,14 @@
                                         <td>{{ $item->name_kz }}</td>
                                         <td>{{ $item->name_ru }}</td>
                                         <td>{{ $item->name_en }}</td>
+                                        <td><span type="button"
+                                                  class="btn btn-success btn-sm">{{ $item->faculty->name_ru }}</span>
+                                        </td>
                                         <td>
-                                            <a href="{{ route('faculties.edit', $item->id) }}" type="button"
+                                            <a href="{{ route('educationalPrograms.edit', $item->id) }}" type="button"
                                                class="btn btn bg-gradient-info btn-sm"><i class="fas fa-pen"></i></a>
-                                            <form action="{{ route('faculties.destroy', $item->id) }}" method="post"
+                                            <form action="{{ route('educationalPrograms.destroy', $item->id) }}"
+                                                  method="post"
                                                   style="display: inline-block">
                                                 @csrf
                                                 @method('DELETE')

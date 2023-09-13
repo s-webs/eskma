@@ -10,10 +10,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('academic_years', function (Blueprint $table) {
+        Schema::create('departments', function (Blueprint $table) {
             $table->id();
-            $table->integer('start');
-            $table->integer('end');
+            $table->foreignId('educational_program_id')->constrained('educational_programs')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('name_kz');
+            $table->string('name_ru');
+            $table->string('name_en');
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('academic_years');
+        Schema::dropIfExists('departments');
     }
 };

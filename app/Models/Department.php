@@ -5,18 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Faculties extends Model
+class Department extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'educational_program_id',
         'name_kz',
         'name_ru',
         'name_en',
     ];
 
-    public function educationalProgram(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function educationProgram(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->hasMany(EducationalProgram::class, 'faculty_id', 'id');
+        return $this->belongsTo(EducationalProgram::class, 'educational_program_id', 'id');
     }
 }

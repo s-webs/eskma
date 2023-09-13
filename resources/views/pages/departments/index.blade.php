@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Факультеты</h1>
+                    <h1>Кафедры</h1>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
-                                <a href="{{ route('faculties.create') }}" type="button"
+                                <a href="{{ route('departments.create') }}" type="button"
                                    class="btn btn-block btn-primary btn-lg">Создать</a>
                             </h3>
                         </div>
@@ -28,7 +28,8 @@
                                     <th>ID</th>
                                     <th>Название на казахском</th>
                                     <th>Название на русском</th>
-                                    <th>Название на английском</th>
+                                    {{--                                    <th>Название на английском</th>--}}
+                                    <th>Образовательная программа</th>
                                     <th>Действия</th>
                                 </tr>
                                 </thead>
@@ -38,11 +39,17 @@
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->name_kz }}</td>
                                         <td>{{ $item->name_ru }}</td>
-                                        <td>{{ $item->name_en }}</td>
+                                        {{--                                        <td>{{ $item->name_en }}</td>--}}
                                         <td>
-                                            <a href="{{ route('faculties.edit', $item->id) }}" type="button"
+                                            <span type="button"
+                                                  class="btn btn-success btn-sm">{{ $item->educationProgram->name_ru }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('departments.edit', $item->id) }}" type="button"
                                                class="btn btn bg-gradient-info btn-sm"><i class="fas fa-pen"></i></a>
-                                            <form action="{{ route('faculties.destroy', $item->id) }}" method="post"
+                                            <form action="{{ route('departments.destroy', $item->id) }}"
+                                                  method="post"
                                                   style="display: inline-block">
                                                 @csrf
                                                 @method('DELETE')

@@ -126,12 +126,36 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
                     <li class="nav-item">
+                        <a href="{{ route('academicYears.index') }}" class="nav-link">
+                            <i class="nav-icon far fa-calendar"></i>
+                            <p>
+                                Годы обучения
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ route('faculties.index') }}" class="nav-link">
-                            <i class="nav-icon far fa-image"></i>
+                            <i class="nav-icon far fa-building"></i>
                             <p>
                                 Факультеты
                             </p>
                         </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('educationalPrograms.index') }}" class="nav-link">
+                            <i class="nav-icon far fa-building"></i>
+                            <p>
+                                Образовательные программы
+                            </p>
+                        </a>
+                    <li class="nav-item">
+                        <a href="{{ route('departments.index') }}" class="nav-link">
+                            <i class="nav-icon far fa-building"></i>
+                            <p>
+                                Кафедры
+                            </p>
+                        </a>
+                    </li>
                     </li>
                 </ul>
             </nav>
