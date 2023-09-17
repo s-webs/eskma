@@ -46,4 +46,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function baseUser()
+    {
+        return $baseUser = $this->hasOne(PracticeBaseUser::class, 'user_id', 'id');
+
+    }
+
+    public function teacher()
+    {
+        return $this->hasOne(Teacher::class, 'user_id', 'id');
+
+    }
 }

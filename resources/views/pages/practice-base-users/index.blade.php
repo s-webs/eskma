@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Группы</h1>
+                    <h1>Преподаватели на базе</h1>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
-                                <a href="{{ route('groups.create') }}" type="button"
+                                <a href="{{ route('practice-base-users.create') }}" type="button"
                                    class="btn btn-block btn-primary btn-lg">Создать</a>
                             </h3>
                         </div>
@@ -26,8 +26,9 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Группа</th>
-                                    <th>Образовательная программа</th>
+                                    <th>ФИО</th>
+                                    <th>Email</th>
+                                    <th>База практики</th>
                                     <th>Действия</th>
                                 </tr>
                                 </thead>
@@ -35,16 +36,17 @@
                                 @foreach($data as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ $item->title }}</td>
+                                        <td>{{ $item->user->surname }} {{ $item->user->name }} {{ $item->user->patronymic }}</td>
+                                        <td>{{ $item->user->email }}</td>
                                         <td>
                                             <span type="button"
-                                                  class="btn btn-success btn-sm">{{ $item->educationProgram->name_ru }}
+                                                  class="btn btn-success btn-sm">{{ $item->base->name_ru }}
                                             </span>
                                         </td>
                                         <td>
-                                            <a href="{{ route('groups.edit', $item->id) }}" type="button"
-                                               class="btn btn bg-gradient-info btn-sm"><i class="fas fa-pen"></i></a>
-                                            <form action="{{ route('groups.destroy', $item->id) }}"
+                                            {{--                                            <a href="{{ route('practice-base-users.edit', $item->id) }}" type="button"--}}
+                                            {{--                                               class="btn btn bg-gradient-info btn-sm"><i class="fas fa-pen"></i></a>--}}
+                                            <form action="{{ route('practice-base-users.destroy', $item->id) }}"
                                                   method="post"
                                                   style="display: inline-block">
                                                 @csrf

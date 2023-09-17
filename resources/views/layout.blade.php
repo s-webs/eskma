@@ -126,6 +126,15 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
                     <li class="nav-item">
+                        <a href="{{ route('profile.index') }}" class="nav-link">
+                            <i class="nav-icon far fa-user"></i>
+                            <p>
+                                Профиль
+                            </p>
+                        </a>
+                    </li>
+                    @role('superuser')
+                    <li class="nav-item">
                         <a href="{{ route('academicYears.index') }}" class="nav-link">
                             <i class="nav-icon far fa-calendar"></i>
                             <p>
@@ -165,6 +174,31 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('practice-bases.index') }}" class="nav-link">
+                            <i class="nav-icon far fa-building"></i>
+                            <p>
+                                Базы практик
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('practice-base-users.index') }}" class="nav-link">
+                            <i class="nav-icon far fa-building"></i>
+                            <p>
+                                Преподаватели на базе
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('teachers.index') }}" class="nav-link">
+                            <i class="nav-icon far fa-building"></i>
+                            <p>
+                                Преподаватели на Кафедре
+                            </p>
+                        </a>
+                    </li>
+                    @endrole
                 </ul>
             </nav>
         </div>
