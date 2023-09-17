@@ -148,6 +148,7 @@
                                 Образовательные программы
                             </p>
                         </a>
+                    </li>
                     <li class="nav-item">
                         <a href="{{ route('departments.index') }}" class="nav-link">
                             <i class="nav-icon far fa-building"></i>
@@ -156,6 +157,13 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('groups.index') }}" class="nav-link">
+                            <i class="nav-icon far fa-building"></i>
+                            <p>
+                                Группы
+                            </p>
+                        </a>
                     </li>
                 </ul>
             </nav>

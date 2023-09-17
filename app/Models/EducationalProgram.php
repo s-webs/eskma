@@ -26,5 +26,10 @@ class EducationalProgram extends Model
         return $this->hasMany(Department::class);
     }
 
+    public function groups(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Group::class);
+    }
+
 
 }
