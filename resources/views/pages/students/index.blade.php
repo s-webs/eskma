@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Преподаватели на кафедре</h1>
+                    <h1>Студенты</h1>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
-                                <a href="{{ route('teachers.create') }}" type="button"
+                                <a href="{{ route('students.create') }}" type="button"
                                    class="btn btn-block btn-primary btn-lg">Создать</a>
                             </h3>
                         </div>
@@ -28,8 +28,8 @@
                                     <th>ID</th>
                                     <th>ФИО</th>
                                     <th>Email</th>
-                                    <th>Кафедра</th>
-                                    <th>Действия</th>
+                                    <th>Группа</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -40,13 +40,11 @@
                                         <td>{{ $item->user->email }}</td>
                                         <td>
                                             <span type="button"
-                                                  class="btn btn-success btn-sm">{{ $item->department->name_ru }}
+                                                  class="btn btn-success btn-sm">{{ $item->group->title }}
                                             </span>
                                         </td>
-                                        <td>
-                                            {{--                                            <a href="{{ route('practice-base-users.edit', $item->id) }}" type="button"--}}
-                                            {{--                                               class="btn btn bg-gradient-info btn-sm"><i class="fas fa-pen"></i></a>--}}
-                                            <form action="{{ route('teachers.destroy', $item->id) }}"
+                                        <td class="text-right">
+                                            <form action="{{ route('students.destroy', $item->id) }}"
                                                   method="post"
                                                   style="display: inline-block">
                                                 @csrf

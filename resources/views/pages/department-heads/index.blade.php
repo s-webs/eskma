@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Преподаватели на кафедре</h1>
+                    <h1>Заведующие кафедрами</h1>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
-                                <a href="{{ route('teachers.create') }}" type="button"
+                                <a href="{{ route('department-heads.create') }}" type="button"
                                    class="btn btn-block btn-primary btn-lg">Создать</a>
                             </h3>
                         </div>
@@ -44,9 +44,7 @@
                                             </span>
                                         </td>
                                         <td>
-                                            {{--                                            <a href="{{ route('practice-base-users.edit', $item->id) }}" type="button"--}}
-                                            {{--                                               class="btn btn bg-gradient-info btn-sm"><i class="fas fa-pen"></i></a>--}}
-                                            <form action="{{ route('teachers.destroy', $item->id) }}"
+                                            <form action="{{ route('department-heads.destroy', $item->id) }}"
                                                   method="post"
                                                   style="display: inline-block">
                                                 @csrf
@@ -60,9 +58,9 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="card-footer clearfix">
-                            {{ $data->links() }}
-                        </div>
+{{--                        <div class="card-footer clearfix">--}}
+{{--                            {{ $data->links() }}--}}
+{{--                        </div>--}}
                     </div>
                 </div>
             </div>

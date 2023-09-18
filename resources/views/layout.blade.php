@@ -135,6 +135,16 @@
                     </li>
                     @role('superuser')
                     <li class="nav-item">
+                        <a href="{{ route('administrators.index') }}" class="nav-link">
+                            <i class="nav-icon far fa-user"></i>
+                            <p>
+                                Администраторы
+                            </p>
+                        </a>
+                    </li>
+                    @endrole
+                    @hasanyrole('superuser|admin')
+                    <li class="nav-item">
                         <a href="{{ route('academicYears.index') }}" class="nav-link">
                             <i class="nav-icon far fa-calendar"></i>
                             <p>
@@ -198,7 +208,37 @@
                             </p>
                         </a>
                     </li>
-                    @endrole
+                    <li class="nav-item">
+                        <a href="{{ route('department-heads.index') }}" class="nav-link">
+                            <i class="nav-icon far fa-building"></i>
+                            <p>
+                                Заведующие кафедрами
+                            </p>
+                        </a>
+                    </li>
+                    @endhasanyrole
+
+                    @hasanyrole('superuser|admin|teacher')
+                    <li class="nav-item">
+                        <a href="{{ route('students.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                Студенты
+                            </p>
+                        </a>
+                    </li>
+                    @endhasanyrole
+
+                    @hasanyrole('teacher')
+                    <li class="nav-item">
+                        <a href="{{ route('practices.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-graduation-cap"></i>
+                            <p>
+                                Практика
+                            </p>
+                        </a>
+                    </li>
+                    @endhasanyrole
                 </ul>
             </nav>
         </div>

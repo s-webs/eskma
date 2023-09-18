@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Преподаватели на кафедре</h1>
+                    <h1>Администраторы</h1>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
-                                <a href="{{ route('teachers.create') }}" type="button"
+                                <a href="{{ route('administrators.create') }}" type="button"
                                    class="btn btn-block btn-primary btn-lg">Создать</a>
                             </h3>
                         </div>
@@ -28,7 +28,6 @@
                                     <th>ID</th>
                                     <th>ФИО</th>
                                     <th>Email</th>
-                                    <th>Кафедра</th>
                                     <th>Действия</th>
                                 </tr>
                                 </thead>
@@ -36,17 +35,10 @@
                                 @foreach($data as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ $item->user->surname }} {{ $item->user->name }} {{ $item->user->patronymic }}</td>
-                                        <td>{{ $item->user->email }}</td>
+                                        <td>{{ $item->surname }} {{ $item->name }} {{ $item->patronymic }}</td>
+                                        <td>{{ $item->email }}</td>
                                         <td>
-                                            <span type="button"
-                                                  class="btn btn-success btn-sm">{{ $item->department->name_ru }}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            {{--                                            <a href="{{ route('practice-base-users.edit', $item->id) }}" type="button"--}}
-                                            {{--                                               class="btn btn bg-gradient-info btn-sm"><i class="fas fa-pen"></i></a>--}}
-                                            <form action="{{ route('teachers.destroy', $item->id) }}"
+                                            <form action="{{ route('administrators.destroy', $item->id) }}"
                                                   method="post"
                                                   style="display: inline-block">
                                                 @csrf

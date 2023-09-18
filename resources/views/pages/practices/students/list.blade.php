@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Преподаватели на кафедре</h1>
+                    <h1>Студенты на практике "{{ 'Практика' }}"</h1>
                 </div>
             </div>
         </div>
@@ -16,8 +16,8 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
-                                <a href="{{ route('teachers.create') }}" type="button"
-                                   class="btn btn-block btn-primary btn-lg">Создать</a>
+                                <a href="{{ route('add-students-to-practice', $practiceID) }}" type="button"
+                                   class="btn btn-block btn-primary btn-lg">Добавить</a>
                             </h3>
                         </div>
 
@@ -26,27 +26,22 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>ФИО</th>
+                                    <th>Фио</th>
                                     <th>Email</th>
-                                    <th>Кафедра</th>
-                                    <th>Действия</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($data as $item)
+                                @foreach($students as $student)
                                     <tr>
-                                        <td>{{ $item->id }}</td>
-                                        <td>{{ $item->user->surname }} {{ $item->user->name }} {{ $item->user->patronymic }}</td>
-                                        <td>{{ $item->user->email }}</td>
-                                        <td>
-                                            <span type="button"
-                                                  class="btn btn-success btn-sm">{{ $item->department->name_ru }}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            {{--                                            <a href="{{ route('practice-base-users.edit', $item->id) }}" type="button"--}}
-                                            {{--                                               class="btn btn bg-gradient-info btn-sm"><i class="fas fa-pen"></i></a>--}}
-                                            <form action="{{ route('teachers.destroy', $item->id) }}"
+                                        <td>{{ $student->id }}</td>
+                                        <td>{{ $student->student->user->surname }} {{ $student->student->user->name }} {{ $student->student->user->patronymic }}</td>
+                                        <td>{{ $student->student->user->email }}</td>
+                                        <td class="text-right">
+                                            <a href="##" type="button" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <form action=""
                                                   method="post"
                                                   style="display: inline-block">
                                                 @csrf
@@ -60,9 +55,9 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="card-footer clearfix">
-                            {{ $data->links() }}
-                        </div>
+                        {{--                        <div class="card-footer clearfix">--}}
+                        {{--                            {{ $data->links() }}--}}
+                        {{--                        </div>--}}
                     </div>
                 </div>
             </div>

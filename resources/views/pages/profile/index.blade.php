@@ -60,6 +60,12 @@
                                 <span class="description-text">Кафедра</span>
                             </div>
                             @endrole
+                            @role('student')
+                            <div class="description-block">
+                                <h5 class="description-header">{{ $user->student->group->title }}</h5>
+                                <span class="description-text">Группа</span>
+                            </div>
+                            @endrole
                             <div class="description-block">
                                 <h5 class="description-header"></h5>
                                 <span class="description-text"></span>

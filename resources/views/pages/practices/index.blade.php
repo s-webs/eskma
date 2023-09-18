@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Преподаватели на кафедре</h1>
+                    <h1>Студенты</h1>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
-                                <a href="{{ route('teachers.create') }}" type="button"
+                                <a href="{{ route('practices.create') }}" type="button"
                                    class="btn btn-block btn-primary btn-lg">Создать</a>
                             </h3>
                         </div>
@@ -26,27 +26,39 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>ФИО</th>
-                                    <th>Email</th>
-                                    <th>Кафедра</th>
-                                    <th>Действия</th>
+                                    <th>Название практики</th>
+                                    <th>Начало</th>
+                                    <th>Окончание</th>
+                                    <th>Студенты</th>
+                                    <th>Статус</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($data as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ $item->user->surname }} {{ $item->user->name }} {{ $item->user->patronymic }}</td>
-                                        <td>{{ $item->user->email }}</td>
+                                        <td>{{ $item->title }}</td>
+                                        <td>{{ $item->start }}</td>
+                                        <td>{{ $item->end }}</td>
+                                        <td>120</td>
                                         <td>
-                                            <span type="button"
-                                                  class="btn btn-success btn-sm">{{ $item->department->name_ru }}
-                                            </span>
+                                            @if($item->status === 1)
+                                                <span type="button" class="btn btn-success btn-sm">Активно</span>
+                                            @else
+                                                <span type="button" class="btn btn-danger btn-sm">Закончилась</span>
+
+                                            @endif
                                         </td>
-                                        <td>
-                                            {{--                                            <a href="{{ route('practice-base-users.edit', $item->id) }}" type="button"--}}
-                                            {{--                                               class="btn btn bg-gradient-info btn-sm"><i class="fas fa-pen"></i></a>--}}
-                                            <form action="{{ route('teachers.destroy', $item->id) }}"
+                                        <td class="text-right">
+                                            <a href="{{ route('students-in-practice', $item->id) }}" type="button"
+                                               class="btn btn-primary btn-sm">
+                                                <i class="fas fa-users"></i>
+                                            </a>
+                                            <a href="##" type="button" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <form action="{{ route('practices.destroy', $item->id) }}"
                                                   method="post"
                                                   style="display: inline-block">
                                                 @csrf
@@ -60,9 +72,9 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="card-footer clearfix">
-                            {{ $data->links() }}
-                        </div>
+                        {{--                        <div class="card-footer clearfix">--}}
+                        {{--                            {{ $data->links() }}--}}
+                        {{--                        </div>--}}
                     </div>
                 </div>
             </div>
