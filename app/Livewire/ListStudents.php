@@ -11,10 +11,10 @@ class ListStudents extends Component
     public $isLoading = false;
     public $itemId;
 
-    public function delete()
+    public function deleteItem($itemId)
     {
         $this->isLoading = true;
-        PracticeStudent::where('id', $this->itemId)->delete();
+        PracticeStudent::where('id', $itemId)->delete();
         $this->isLoading = false;
         $this->render();
     }

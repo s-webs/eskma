@@ -49,7 +49,28 @@ Route::middleware('auth')->group(function () {
         Route::get('practices/{id}/students', [\App\Http\Controllers\Practice\PracticeStudentsController::class, 'listStudents'])->name('students-in-practice');
         Route::get('practices/{id}/students/add', [\App\Http\Controllers\Practice\PracticeStudentsController::class, 'addStudents'])->name('add-students-to-practice');
     });
+
+    Route::group(['middleware' => ['role:student']], function () {
+        Route::get('practices', [\App\Http\Controllers\PracticeStudent\PracticesController::class, 'index'])->name('student.practices-index');
+        Route::get('practices/{id}/detail', [\App\Http\Controllers\PracticeStudent\PracticesController::class, 'details'])->name('student.practices-details');
+
+        Route::get('practices/{id}/add-plan', [\App\Http\Controllers\PracticeStudent\PracticePlansController::class, 'create'])->name('student.practices-add-plan');
+        Route::post('practices/store-plan', [\App\Http\Controllers\PracticeStudent\PracticePlansController::class, 'store'])->name('student.practices-store-plan');
+        Route::get('practices/edit-plan/{id}', [\App\Http\Controllers\PracticeStudent\PracticePlansController::class, 'edit'])->name('student.practices-edit-plan');
+        Route::post('practices/update-plan/{id}', [\App\Http\Controllers\PracticeStudent\PracticePlansController::class, 'update'])->name('student.practices-update-plan');
+        Route::delete('practices/delete-plan/{id}', [\App\Http\Controllers\PracticeStudent\PracticePlansController::class, 'destroy'])->name('student.practices-delete-plan');
+//        Route::resource('student/practices/{id}/plans', \App\Http\Controllers\PracticeStudent\PracticePlansController::class);
+
+        Route::get('practices/{id}/add-content', [\App\Http\Controllers\PracticeStudent\PracticeContentsController::class, 'create'])->name('student.practices-add-content');
+        Route::get('practices/{id}/edit-content', [\App\Http\Controllers\PracticeStudent\PracticeContentsController::class, 'edit'])->name('student.practices-edit-content');
+        Route::post('practices/store-content', [\App\Http\Controllers\PracticeStudent\PracticeContentsController::class, 'store'])->name('student.practices-store-content');
+        Route::post('practices/update-content/{id}', [\App\Http\Controllers\PracticeStudent\PracticeContentsController::class, 'update'])->name('student.practices-update-content');
+        Route::delete('practices/delete-content/{id}', [\App\Http\Controllers\PracticeStudent\PracticeContentsController::class, 'destroy'])->name('student.practices-delete-content');
+
+        Route::post('/upload-image', [\App\Http\Controllers\ImageUploadController::class, 'upload'])->name('image.upload');
+    });
 });
+
 
 Route::get('/test', function () {
     $student = \App\Models\Student::where('id', 3)->first();

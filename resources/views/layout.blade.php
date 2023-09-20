@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf_token" content="{{ csrf_token() }}"/>
     <title>SKMA Online</title>
 
     <link rel="stylesheet"
@@ -239,6 +240,17 @@
                         </a>
                     </li>
                     @endhasanyrole
+
+                    @hasanyrole('student')
+                    <li class="nav-item">
+                        <a href="{{ route('student.practices-index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-graduation-cap"></i>
+                            <p>
+                                Практика
+                            </p>
+                        </a>
+                    </li>
+                    @endhasanyrole
                 </ul>
             </nav>
         </div>
@@ -295,5 +307,40 @@
 <script src="/dist/js/demo.js"></script>
 
 <script src="/dist/js/pages/dashboard.js"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+<script>
+    console.log("{{ csrf_token() }}")
+    $('#summernote').summernote({
+        callbacks: {
+            onImageUpload: function (files) {
+                var editor = $(this);
+                var formData = new FormData();
+                formData.append('image', files[0]);
+                console.log()
+                // Отправляем изображение на сервер
+                $.ajax({
+                    url: '/upload-image', // Замените '/upload-image' на ваш URL-адрес загрузки изображений
+                    method: 'POST',
+                    data: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        var imageUrl = response.url; // URL загруженного изображения
+                        editor.summernote('insertImage', imageUrl);
+                    },
+                    error: function (response) {
+                        console.error('Ошибка загрузки изображения.');
+                    }
+                });
+            }
+        }
+    });
+</script>
 </body>
 </html>

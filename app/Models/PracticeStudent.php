@@ -18,4 +18,14 @@ class PracticeStudent extends Model
     {
         return $this->belongsTo(Student::class);
     }
+
+    public function plan()
+    {
+        return $this->hasMany(PracticePlan::class);
+    }
+
+    public function content()
+    {
+        return $this->hasMany(PracticeContent::class);
+    }
 }

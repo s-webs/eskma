@@ -18,7 +18,7 @@
                     <a href="##" type="button" class="btn btn-primary btn-sm">
                         <i class="fas fa-eye"></i>
                     </a>
-                    <button type="submit" wire:click="delete" wire:loading.attr="disabled"
+                    <button type="submit" wire:click="deleteItem({{ $student->id }})" wire:loading.attr="disabled"
                             class="btn btn bg-gradient-danger btn-sm">
                         <style>
                             .custom-spinner {
