@@ -19,7 +19,7 @@ class Student extends Model
         return $this->belongsTo(Group::class);
     }
 
-    public function practiceStudent()
+    public function practices(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(PracticeStudent::class);
     }

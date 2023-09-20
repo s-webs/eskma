@@ -41,7 +41,9 @@
                                         <td>{{ $item->title }}</td>
                                         <td>{{ $item->start }}</td>
                                         <td>{{ $item->end }}</td>
-                                        <td>120</td>
+                                        <td><span type="button"
+                                                  class="btn btn-primary btn-sm">{{ $item->practiceStudents->count() }}</span>
+                                        </td>
                                         <td>
                                             @if($item->status === 1)
                                                 <span type="button" class="btn btn-success btn-sm">Активно</span>
@@ -54,6 +56,10 @@
                                             <a href="{{ route('students-in-practice', $item->id) }}" type="button"
                                                class="btn btn-primary btn-sm">
                                                 <i class="fas fa-users"></i>
+                                            </a>
+                                            <a href="{{ route('practices.edit', $item->id) }}" type="button"
+                                               class="btn btn-primary btn-sm">
+                                                <i class="fas fa-pen"></i>
                                             </a>
                                             <a href="##" type="button" class="btn btn-primary btn-sm">
                                                 <i class="fas fa-eye"></i>
@@ -72,9 +78,9 @@
                                 </tbody>
                             </table>
                         </div>
-                        {{--                        <div class="card-footer clearfix">--}}
-                        {{--                            {{ $data->links() }}--}}
-                        {{--                        </div>--}}
+                        <div class="card-footer clearfix">
+                            {{ $data->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

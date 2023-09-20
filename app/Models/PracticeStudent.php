@@ -9,13 +9,13 @@ class PracticeStudent extends Model
 {
     use HasFactory;
 
-    public function student()
-    {
-        return $this->belongsTo(Student::class);
-    }
-
     public function practice()
     {
         return $this->belongsTo(Practice::class);
+    }
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
     }
 }

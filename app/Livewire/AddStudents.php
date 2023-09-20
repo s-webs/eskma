@@ -2,9 +2,11 @@
 
 namespace App\Livewire;
 
+use App\Models\Practice;
 use App\Models\PracticeStudent;
 use App\Models\Student;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class AddStudents extends Component
@@ -20,18 +22,27 @@ class AddStudents extends Component
 
     public function render()
     {
-        $students = Student::paginate(50);
         $practiceID = $this->practiceID;
+        $practice = Practice::where('id', $practiceID)->first();
+        $students = Student::whereDoesntHave('practices', function (Builder $query) {
+            $query->where('practice_id', $this->practiceID);
+        })->with(['user', 'practices'])->paginate(50);
+
 
         if (strlen($this->search) >= 3) {
-            $students = Student::whereHas('user', function (Builder $query) {
-                $query->where('surname', 'like', '%' . $this->search . '%')
-                    ->orWhere('name', 'like', '%' . $this->search . '%')
-                    ->orWhere('patronymic', 'like', '%' . $this->search . '%');
-            })->paginate(50);
+            $students = Student::whereDoesntHave('practices', function (Builder $query) {
+                $query->where('practice_id', $this->practiceID);
+            })
+                ->whereHas('user', function (Builder $query) {
+                    $query->where('surname', 'like', '%' . $this->search . '%')
+                        ->orWhere('name', 'like', '%' . $this->search . '%')
+                        ->orWhere('patronymic', 'like', '%' . $this->search . '%')
+                        ->orWhere('email', 'like', '%' . $this->search . '%');
+                })
+                ->with(['user', 'practices'])->paginate(50);
         }
 
-        return view('livewire.add-students', compact('students', 'practiceID'));
+        return view('livewire.add-students', compact('students', 'practiceID', 'practice'));
     }
 
     public function addStudent($studentID)
@@ -40,11 +51,5 @@ class AddStudents extends Component
         $practiceStudent->student_id = $studentID;
         $practiceStudent->practice_id = $this->practiceID;
         $practiceStudent->save();
-    }
-
-    public function deleteStudent($studentID)
-    {
-        $practiceStudent = PracticeStudent::where('practice_id', $this->practiceID && 'student_id', $studentID)->first();
-        $practiceStudent->delete();
     }
 }
