@@ -37,7 +37,7 @@ class PracticePlansController extends Controller
         $practicePlan->end = $request->end;
         $practicePlan->save();
 
-        return redirect()->back();
+        return redirect(route('student.practices-details', $practicePlan->practiceStudent->id));
     }
 
     /**
@@ -69,7 +69,7 @@ class PracticePlansController extends Controller
         $plan->end = $request->end;
         $plan->save();
 
-        return redirect()->back();
+        return redirect(route('student.practices-details', $plan->practiceStudent->id));
     }
 
     /**
@@ -78,8 +78,9 @@ class PracticePlansController extends Controller
     public function destroy(string $id)
     {
         $plan = PracticePlan::where('id', $id)->first();
+        $redirectId = $plan->practiceStudent->id;
         $plan->delete();
 
-        return redirect()->back();
+        return redirect(route('student.practices-details', $redirectId));
     }
 }

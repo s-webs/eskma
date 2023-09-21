@@ -17,7 +17,8 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label>Контент</label>
-                            <textarea name="content" class="form-control" rows="3" placeholder="" value="" required>{{ $plan->content }}
+                            <textarea name="content" id="summernote" required>
+                                {!! $plan->content !!}
                             </textarea>
                         </div>
                         <div class="form-group">

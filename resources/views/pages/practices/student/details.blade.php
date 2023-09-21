@@ -3,24 +3,42 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Практика - {{ $practice->practice->title }}</h1>
-                </div>
+                <div class="col-sm-6"></div>
             </div>
         </div>
     </section>
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Дневник о прохождении производственной практики
+                                "{{ $practice->practice->year }}"</h3>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Образовательная программа:</strong> "Фармация"</p>
+                            <p><strong>Обучающийся:</strong>
+                                {{ $practice->student->user->surname }}
+                                {{ $practice->student->user->name }}
+                                {{ $practice->student->user->patronymic }}
+                            </p>
+                            <p><strong>Учебный год:</strong> 2020-2021</p>
+                            <p><strong>Группа:</strong> {{ $practice->student->group->title }}</p>
+                            <p><strong>Дата прохождения практики:</strong> 24.05.2021 - 28.05.2021</p>
+                            <p><strong>Специалист по практике от ЮКМА:</strong> Рахманова Гульнара</p>
+                        </div>
+                    </div>
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Рабочий план-график производственной практики</h3>
                             <div class="card-tools">
-                                <a href="{{ route('student.practices-add-plan', $practice->id) }}" type="button"
-                                   class="btn btn-primary btn-sm">
-                                    <i class="fas fa-plus"></i>
-                                </a>
+                                @if($practice->plan->count() === 0)
+                                    <a href="{{ route('student.practices-add-plan', $practice->id) }}" type="button"
+                                       class="btn btn-primary btn-sm">
+                                        <i class="fas fa-plus"></i>
+                                    </a>
+                                @endif
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                                     <i class="fas fa-minus"></i>
                                 </button>
@@ -51,14 +69,13 @@
                                                                 @method('DELETE')
                                                                 <button type="submit"
                                                                         class="btn btn bg-gradient-danger btn-sm border-white">
-                                                                    <i
-                                                                        class="fas fa-trash"></i></button>
+                                                                    <i class="fas fa-trash"></i></button>
                                                             </form>
                                                         </div>
                                                     </div>
                                                     <div class="card-body">
                                                         <p>
-                                                            {{ $plan->content }}
+                                                            {!! $plan->content !!}
                                                         </p>
                                                         @if(!empty($plan->note))
                                                             <div class="callout callout-info">
@@ -74,7 +91,8 @@
                             </div>
                         </div>
                     </div>
-
+                </div>
+                <div class="col-6">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Содержание производственной практики</h3>

@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::group(['middleware' => ['role:student']], function () {
-        Route::get('practices', [\App\Http\Controllers\PracticeStudent\PracticesController::class, 'index'])->name('student.practices-index');
+        Route::get('practices-student', [\App\Http\Controllers\PracticeStudent\PracticesController::class, 'index'])->name('student.practices-index');
         Route::get('practices/{id}/detail', [\App\Http\Controllers\PracticeStudent\PracticesController::class, 'details'])->name('student.practices-details');
 
         Route::get('practices/{id}/add-plan', [\App\Http\Controllers\PracticeStudent\PracticePlansController::class, 'create'])->name('student.practices-add-plan');

@@ -25,9 +25,9 @@ class PracticeStudentsController extends Controller
 
     public function storeStudents($practiceID)
     {
-        $practiceStudents = new PracticeStudent();
-        $practiceStudents->practice_id = $practiceID;
-        dd($practiceID);
+//        $practiceStudents = new PracticeStudent();
+//        $practiceStudents->practice_id = $practiceID;
+//        dd($practiceID);
     }
 
     /**

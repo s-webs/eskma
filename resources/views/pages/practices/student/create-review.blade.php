@@ -18,7 +18,7 @@
                         <input name="practice_student_id" type="number" value="{{ $id }}" style="display: none">
                         <div class="form-group">
                             <label>Контент</label>
-                            <textarea name="content" id="summernote" required></textarea>
+                            <textarea name="content" class="form-control" rows="3" placeholder="" required></textarea>
                         </div>
                         <div class="form-group">
                             <label>Примечание</label>

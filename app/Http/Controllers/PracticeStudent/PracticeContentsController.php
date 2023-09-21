@@ -23,7 +23,7 @@ class PracticeContentsController extends Controller
         $content->end = $request->end;
         $content->save();
 
-        return redirect()->back();
+        return redirect(route('student.practices-details', $content->practiceStudent->id));
     }
 
     public function edit($id)
@@ -40,15 +40,16 @@ class PracticeContentsController extends Controller
         $content->end = $request->end;
         $content->save();
 
-        return redirect()->back();
+        return redirect(route('student.practices-details', $content->practiceStudent->id));
     }
 
     public function destroy($id)
     {
         $content = PracticeContent::where('id', $id)->first();
+        $redirectId = $content->practiceStudent->id;
         $content->delete();
 
-        return redirect()->back();
+        return redirect(route('student.practices-details', $redirectId));
     }
 
 }

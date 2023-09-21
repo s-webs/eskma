@@ -45,6 +45,13 @@
                                                class="btn btn-primary btn-sm">
                                                 <i class="fas fa-arrow-right"></i>
                                             </a>
+                                            <a href="##" type="button"
+                                               class="btn btn-primary btn-sm">
+                                                <i class="fas fa-comment"></i>
+                                            </a>
+                                            <a href="##" type="button" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-book"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
