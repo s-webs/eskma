@@ -36,7 +36,7 @@
                                             <i class="fas fa-eye"></i>
                                         </button>
                                         @role('student')
-                                        @if($practice->status === 1)
+                                        @if($practice->practice->status === 1)
                                             <a href="{{ route('student.practices-edit-content', $content->id) }}"
                                                type="button"
                                                class="btn btn-success btn-sm">

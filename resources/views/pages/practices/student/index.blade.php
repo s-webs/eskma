@@ -45,13 +45,12 @@
                                                class="btn btn-primary btn-sm">
                                                 <i class="fas fa-arrow-right"></i>
                                             </a>
-                                            <a href="##" type="button"
-                                               class="btn btn-primary btn-sm">
-                                                <i class="fas fa-comment"></i>
-                                            </a>
-                                            <a href="##" type="button" class="btn btn-primary btn-sm">
-                                                <i class="fas fa-book"></i>
-                                            </a>
+                                            @isset($item->pdf_link)
+                                                <a href="{{ $item->pdf_link }}"
+                                                   class="btn btn-primary btn-sm">
+                                                    <i class="fas fa-file-pdf"></i>
+                                                </a>
+                                            @endisset
                                             @isset($item->pdf_link)
                                                 <a href="##" type="button" class="btn btn-primary btn-sm">
                                                     <i class="fas fa-file-pdf"></i>

@@ -24,66 +24,58 @@ class PracticeStudentsController extends Controller
         return view('pages.practices.students.add', compact('students', 'practiceID'));
     }
 
-    public function storeStudents($practiceID)
+    public function addGrade($id)
     {
-//        $practiceStudents = new PracticeStudent();
-//        $practiceStudents->practice_id = $practiceID;
-//        dd($practiceID);
+        $practiceId = $id;
+        return view('pages.practices.add-grade', compact('practiceId'));
     }
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function storeGrade(Request $request, $id)
     {
-        //
+        $practice = PracticeStudent::where('id', $id)->first();
+        if (auth()->user()->hasRole('teacher')) {
+            $practice->teacher_grade = $request->grade;
+        } elseif (auth()->user()->hasRole('base_user')) {
+            $practice->base_user_grade = $request->grade;
+        }
+        $practice->save();
+
+        return redirect(route('student.practices-details', $id));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function addTotalGrade($id)
     {
-        //
+        $practiceId = $id;
+        return view('pages.practices.add-total-grade', compact('practiceId'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function storeTotalGrade(Request $request, $id)
     {
-        //
+        $practice = PracticeStudent::where('id', $id)->first();
+        $practice->total_grade = $request->grade;
+        $practice->save();
+
+        return redirect(route('student.practices-details', $id));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function addReview($id)
     {
-        //
+        $practiceId = $id;
+        return view('pages.practices.add-review', compact('practiceId'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function storeReview(Request $request, $id)
     {
-        //
-    }
+        $practice = PracticeStudent::where('id', $id)->first();
+        if (auth()->user()->hasRole('teacher')) {
+            $practice->teacher_review = $request->review;
+        } elseif (auth()->user()->hasRole('base_user')) {
+            $practice->base_user_review = $request->review;
+        } elseif (auth()->user()->hasRole('student')) {
+            $practice->student_review = $request->review;
+        }
+        $practice->save();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect(route('student.practices-details', $id));
     }
 }

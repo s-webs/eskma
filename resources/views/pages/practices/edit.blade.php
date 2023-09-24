@@ -80,18 +80,6 @@
                             <label>Окончание</label>
                             <input name="end" type="date" value="{{ $data->end }}" required>
                         </div>
-                        <div class="form-group">
-                            <label>Активна практика?</label>
-                            <select name="status" required>
-                                @if($data->status === 1)
-                                    <option value="1" selected>Да</option>
-                                    <option value="0">Нет</option>
-                                @else
-                                    <option value="1">Да</option>
-                                    <option value="0" selected>Нет</option>
-                                @endif
-                            </select>
-                        </div>
                     </div>
 
                     <div class=" card-footer">

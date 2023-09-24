@@ -64,10 +64,6 @@
                             <label>Окончание</label>
                             <input name="end" type="date">
                         </div>
-                        <div class="form-group">
-                            <label>Активна практика?</label>
-                            <input name="status" type="checkbox">
-                        </div>
                     </div>
 
                     <div class="card-footer">

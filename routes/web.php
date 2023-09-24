@@ -44,6 +44,15 @@ Route::middleware('auth')->group(function () {
         Route::resource('students', \App\Http\Controllers\Users\StudentsController::class);
     });
 
+    Route::group(['middleware' => ['role:teacher|base_user|student']], function () {
+        Route::get('practices-student/{id}/add-grade', [\App\Http\Controllers\Practice\PracticeStudentsController::class, 'addGrade'])->name('add-grade');
+        Route::post('practices-student/{id}/store-grade', [\App\Http\Controllers\Practice\PracticeStudentsController::class, 'storeGrade'])->name('store-grade');
+        Route::get('practices-student/{id}/add-total-grade', [\App\Http\Controllers\Practice\PracticeStudentsController::class, 'addTotalGrade'])->name('add-total-grade');
+        Route::post('practices-student/{id}/store-total-grade', [\App\Http\Controllers\Practice\PracticeStudentsController::class, 'storeTotalGrade'])->name('store-total-grade');
+        Route::get('practices-student/{id}/add-review', [\App\Http\Controllers\Practice\PracticeStudentsController::class, 'addReview'])->name('add-review');
+        Route::post('practices-student/{id}/store-review', [\App\Http\Controllers\Practice\PracticeStudentsController::class, 'storeReview'])->name('store-review');
+    });
+
     Route::resource('practices', \App\Http\Controllers\Practice\PracticesController::class);
     Route::get('practices/{id}/students', [\App\Http\Controllers\Practice\PracticeStudentsController::class, 'listStudents'])->name('students-in-practice');
     Route::post('practices/{id}/disable', [\App\Http\Controllers\Practice\PracticesController::class, 'disable'])->name('disable-practice');

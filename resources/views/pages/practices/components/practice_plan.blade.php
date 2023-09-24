@@ -30,7 +30,7 @@
                                         <strong>{{ $plan->start }} - {{ $plan->end }}</strong>
                                     </h4>
                                     @role('student')
-                                    @if($practice->status === 1)
+                                    @if($practice->practice->status === 1)
                                         <div class="card-tools">
                                             <a href="{{ route('student.practices-edit-plan', $plan->id) }}"
                                                type="button"
