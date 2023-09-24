@@ -22,13 +22,13 @@
                         @role('admin')
                         Администратор
                         @endrole
-                        @role('head-of-department')
+                        @role('head_of_department')
                         Заведующий кафедрой
                         @endrole
                         @role('teacher')
                         Преподаватель
                         @endrole
-                        @role('teacher-for-base')
+                        @role('base_user')
                         Преподаватель на базе
                         @endrole
                         @role('student')
@@ -48,7 +48,7 @@
                             </div>
                         </div>
                         <div class="col-sm-6 border-right">
-                            @role('teacher-for-base')
+                            @role('base_user')
                             <div class="description-block">
                                 <h5 class="description-header">{{ $user->baseUser->base->name_ru }}</h5>
                                 <span class="description-text">База практики</span>

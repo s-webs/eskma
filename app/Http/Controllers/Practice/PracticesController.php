@@ -61,10 +61,10 @@ class PracticesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+//    public function show(string $id)
+//    {
+//        return view('pages.practices.practices.show');
+//    }
 
     /**
      * Show the form for editing the specified resource.

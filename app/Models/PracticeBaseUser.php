@@ -18,4 +18,9 @@ class PracticeBaseUser extends Model
     {
         return $this->belongsTo(PracticeBase::class, 'practice_base_id', 'id');
     }
+
+    public function practices()
+    {
+        return $this->hasMany(Practice::class, 'practice_base_users_id', 'id');
+    }
 }

@@ -15,7 +15,8 @@
                 <td>{{ $student->student->user->surname }} {{ $student->student->user->name }} {{ $student->student->user->patronymic }}</td>
                 <td>{{ $student->student->user->email }}</td>
                 <td class="text-right">
-                    <a href="##" type="button" class="btn btn-primary btn-sm">
+                    <a href="{{ route('student.practices-details', $student->id) }}" type="button"
+                       class="btn btn-primary btn-sm">
                         <i class="fas fa-eye"></i>
                     </a>
                     <button type="submit" wire:click="deleteItem({{ $student->id }})" wire:loading.attr="disabled"

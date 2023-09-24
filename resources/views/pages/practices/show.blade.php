@@ -26,11 +26,8 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Название практики</th>
-                                    <th>Начало</th>
-                                    <th>Окончание</th>
-                                    <th>Студенты</th>
-                                    <th>Статус</th>
+                                    <th>ФИО</th>
+                                    <th>Группа</th>
                                     <th></th>
                                 </tr>
                                 </thead>
@@ -38,20 +35,12 @@
                                 @foreach($data as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ $item->title }}</td>
-                                        <td>{{ $item->start }}</td>
-                                        <td>{{ $item->end }}</td>
-                                        <td><span type="button"
-                                                  class="btn btn-primary btn-sm">{{ $item->practiceStudents->count() }}</span>
-                                        </td>
                                         <td>
-                                            @if($item->status === 1)
-                                                <span type="button" class="btn btn-success btn-sm">Активно</span>
-                                            @else
-                                                <span type="button" class="btn btn-danger btn-sm">Закончилась</span>
-
-                                            @endif
+                                            {{ $item->surname }}
+                                            {{ $item->name }}
+                                            {{ $item->patronymic }}
                                         </td>
+                                        <td>Группа</td>
                                         <td class="text-right">
                                             <a href="{{ route('students-in-practice', $item->id) }}" type="button"
                                                class="btn btn-primary btn-sm">
@@ -60,6 +49,9 @@
                                             <a href="{{ route('practices.edit', $item->id) }}" type="button"
                                                class="btn btn-primary btn-sm">
                                                 <i class="fas fa-pen"></i>
+                                            </a>
+                                            <a href="##" type="button" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-eye"></i>
                                             </a>
                                             <form action="{{ route('practices.destroy', $item->id) }}"
                                                   method="post"

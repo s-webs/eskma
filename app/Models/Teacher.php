@@ -18,4 +18,6 @@ class Teacher extends Model
     {
         return $this->belongsTo(Department::class);
     }
+
+
 }

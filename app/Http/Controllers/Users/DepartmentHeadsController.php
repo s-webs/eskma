@@ -42,7 +42,7 @@ class DepartmentHeadsController extends Controller
         $user->password = Hash::make('SkmaHead123!@#');
         $user->save();
 
-        $user->assignRole('head-of-department');
+        $user->assignRole('head_of_department');
 
         $teacher = new DepartmentHead();
         $teacher->department_id = $request->department_id;
@@ -83,7 +83,7 @@ class DepartmentHeadsController extends Controller
     {
         $deparmentHead = DepartmentHead::where('id', $id)->first();
         $user = User::where('id', $deparmentHead->user_id)->first();
-        $user->removeRole('head-of-department');
+        $user->removeRole('head_of_department');
         $user->delete();
 
         return redirect(route('department-heads.index'));

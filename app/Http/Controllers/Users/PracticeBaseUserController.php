@@ -42,7 +42,7 @@ class PracticeBaseUserController extends Controller
         $user->password = Hash::make('SkmaBaseTeacher123!@#');
         $user->save();
 
-        $user->assignRole('teacher-for-base');
+        $user->assignRole('base_user');
 
         $baseUser = new PracticeBaseUser();
         $baseUser->practice_base_id = $request->practice_base_id;

@@ -13,4 +13,14 @@ class Practice extends Model
     {
         return $this->hasMany(PracticeStudent::class);
     }
+
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class);
+    }
+
+    public function academicYear()
+    {
+        return $this->belongsTo(AcademicYear::class);
+    }
 }

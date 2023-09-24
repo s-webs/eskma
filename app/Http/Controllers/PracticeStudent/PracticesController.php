@@ -19,7 +19,7 @@ class PracticesController extends Controller
     public function details($id)
     {
         $practice = PracticeStudent::where('id', $id)->first();
-//        dd($practice);
-        return view('pages.practices.student.details', compact('practice'));
+        $practiceId = $practice->id;
+        return view('pages.practices.student.details', compact('practice', 'practiceId'));
     }
 }
