@@ -78,4 +78,11 @@ class PracticeStudentsController extends Controller
 
         return redirect(route('student.practices-details', $id));
     }
+
+    public function generatePdf($id)
+    {
+        $practice = PracticeStudent::where('id', $id)->first();
+
+        return view('pdf.report', compact('practice'));
+    }
 }

@@ -51,6 +51,8 @@ Route::middleware('auth')->group(function () {
         Route::post('practices-student/{id}/store-total-grade', [\App\Http\Controllers\Practice\PracticeStudentsController::class, 'storeTotalGrade'])->name('store-total-grade');
         Route::get('practices-student/{id}/add-review', [\App\Http\Controllers\Practice\PracticeStudentsController::class, 'addReview'])->name('add-review');
         Route::post('practices-student/{id}/store-review', [\App\Http\Controllers\Practice\PracticeStudentsController::class, 'storeReview'])->name('store-review');
+        Route::get('practices-student/{id}/generate-report', [\App\Http\Controllers\Practice\PracticeStudentsController::class, 'generatePdf'])->name('generate-pdf');
+
     });
 
     Route::resource('practices', \App\Http\Controllers\Practice\PracticesController::class);
