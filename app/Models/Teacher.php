@@ -19,5 +19,10 @@ class Teacher extends Model
         return $this->belongsTo(Department::class);
     }
 
+    public function practices()
+    {
+        return $this->hasMany(Practice::class, 'teacher_id', 'id');
+    }
+
 
 }

@@ -10,6 +10,7 @@ class ListStudents extends Component
     public $practiceId;
     public $isLoading = false;
     public $itemId;
+    public $practice;
 
     public function deleteItem($itemId)
     {
@@ -22,6 +23,7 @@ class ListStudents extends Component
     public function render()
     {
         $students = PracticeStudent::where('practice_id', $this->practiceId)->get();
-        return view('livewire.list-students', compact('students'));
+        $pracctice = $this->practice;
+        return view('livewire.list-students', compact('students', 'pracctice'));
     }
 }

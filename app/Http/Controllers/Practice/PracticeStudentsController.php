@@ -13,8 +13,9 @@ class PracticeStudentsController extends Controller
 
     public function listStudents($practiceID)
     {
+        $practice = Practice::where('id', $practiceID)->first();
         $students = PracticeStudent::where('practice_id', $practiceID)->get();
-        return view('pages.practices.students.list', compact('students', 'practiceID'));
+        return view('pages.practices.students.list', compact('students', 'practiceID', 'practice'));
     }
 
     public function addStudents($practiceID)

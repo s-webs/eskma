@@ -13,7 +13,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-6">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                     <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">
@@ -52,8 +52,14 @@
                     @role('student')
                     <livewire:signature-component :practiceId="$practiceId" :role="'student'"/>
                     @endrole
+                    @role('superuser')
+                    <livewire:signature-component :practiceId="$practiceId" :role="'superuser'"/>
+                    @endrole
+                    @role('admin')
+                    <livewire:signature-component :practiceId="$practiceId" :role="'admin'"/>
+                    @endrole
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                     @include('pages.practices.components.practice_plan', ['practice' => $practice])
                     @include('pages.practices.components.practice_content', ['practice' => $practice])
                 </div>

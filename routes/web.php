@@ -44,9 +44,11 @@ Route::middleware('auth')->group(function () {
         Route::resource('students', \App\Http\Controllers\Users\StudentsController::class);
     });
 
+    Route::resource('practices', \App\Http\Controllers\Practice\PracticesController::class);
+    Route::get('practices/{id}/students', [\App\Http\Controllers\Practice\PracticeStudentsController::class, 'listStudents'])->name('students-in-practice');
+    Route::post('practices/{id}/disable', [\App\Http\Controllers\Practice\PracticesController::class, 'disable'])->name('disable-practice');
+
     Route::group(['middleware' => ['role:teacher']], function () {
-        Route::resource('practices', \App\Http\Controllers\Practice\PracticesController::class);
-        Route::get('practices/{id}/students', [\App\Http\Controllers\Practice\PracticeStudentsController::class, 'listStudents'])->name('students-in-practice');
         Route::get('practices/{id}/students/add', [\App\Http\Controllers\Practice\PracticeStudentsController::class, 'addStudents'])->name('add-students-to-practice');
     });
     Route::get('practices/{id}/detail', [\App\Http\Controllers\PracticeStudent\PracticesController::class, 'details'])->name('student.practices-details');

@@ -20,4 +20,9 @@ class Department extends Model
     {
         return $this->belongsTo(EducationalProgram::class, 'educational_program_id', 'id');
     }
+
+    public function teachers(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Teacher::class);
+    }
 }

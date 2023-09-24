@@ -18,4 +18,9 @@ class DepartmentHead extends Model
     {
         return $this->belongsTo(Department::class);
     }
+
+    public function teachers()
+    {
+        return $this->hasMany(Teacher::class, 'department_id', 'department_id');
+    }
 }

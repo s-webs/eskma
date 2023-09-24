@@ -53,6 +53,12 @@ class User extends Authenticatable
 
     }
 
+    public function headDepartment()
+    {
+        return $this->hasOne(DepartmentHead::class, 'user_id', 'id');
+
+    }
+
     public function teacher()
     {
         return $this->hasOne(Teacher::class, 'user_id', 'id');

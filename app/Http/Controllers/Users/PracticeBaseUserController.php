@@ -8,6 +8,7 @@ use App\Models\PracticeBaseUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class PracticeBaseUserController extends Controller
 {
@@ -47,6 +48,7 @@ class PracticeBaseUserController extends Controller
         $baseUser = new PracticeBaseUser();
         $baseUser->practice_base_id = $request->practice_base_id;
         $baseUser->user_id = $user->id;
+        $teacher->uuid = Str::uuid();
         $baseUser->save();
 
         return redirect(route('practice-base-users.index'));

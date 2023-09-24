@@ -15,10 +15,12 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
+                            @role('teacher')
                             <h3 class="card-title">
                                 <a href="{{ route('practices.create') }}" type="button"
                                    class="btn btn-block btn-primary btn-lg">Создать</a>
                             </h3>
+                            @endrole
                         </div>
 
                         <div class="card-body table-responsive p-0">
@@ -57,27 +59,48 @@
                                                class="btn btn-primary btn-sm">
                                                 <i class="fas fa-users"></i>
                                             </a>
-                                            <a href="{{ route('practices.edit', $item->id) }}" type="button"
-                                               class="btn btn-primary btn-sm">
-                                                <i class="fas fa-pen"></i>
-                                            </a>
-                                            <form action="{{ route('practices.destroy', $item->id) }}"
-                                                  method="post"
-                                                  style="display: inline-block">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn bg-gradient-danger btn-sm"><i
-                                                        class="fas fa-trash"></i></button>
-                                            </form>
+                                            @role('superuser|admin')
+                                            @if($item->status === 1)
+                                                <form action="{{ route('disable-practice', $item->id) }}"
+                                                      method="post"
+                                                      style="display: inline-block">
+                                                    @csrf
+                                                    <button class="btn btn-danger btn-sm">Завершить практику</button>
+                                                </form>
+                                            @else
+                                                <form action="{{ route('disable-practice', $item->id) }}"
+                                                      method="post"
+                                                      style="display: inline-block">
+                                                    @csrf
+                                                    <button class="btn btn-primary btn-sm">Запустить практику</button>
+                                                </form>
+                                            @endif
+                                            @endrole
+                                            @role('teacher')
+                                            @if($item->status === 1)
+                                                <a href="{{ route('practices.edit', $item->id) }}" type="button"
+                                                   class="btn btn-primary btn-sm">
+                                                    <i class="fas fa-pen"></i>
+                                                </a>
+                                                <form action="{{ route('practices.destroy', $item->id) }}"
+                                                      method="post"
+                                                      style="display: inline-block">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn bg-gradient-danger btn-sm"><i
+                                                            class="fas fa-trash"></i></button>
+                                                </form>
+                                            @endif
+                                            @endrole
                                         </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
                         </div>
-                        <div class="card-footer clearfix">
-                            {{ $data->links() }}
-                        </div>
+                        {{--                        <div class="card-footer clearfix">--}}
+                        {{--                            {{ $data->links() }}--}}
+                        {{--                        </div>--}}
                     </div>
                 </div>
             </div>

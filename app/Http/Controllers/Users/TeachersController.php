@@ -8,6 +8,7 @@ use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class TeachersController extends Controller
 {
@@ -40,6 +41,7 @@ class TeachersController extends Controller
         $user->patronymic = 'null';
         $user->email = $request->email;
         $user->password = Hash::make('SkmaTeacher123!@#');
+        $user->uuid =
         $user->save();
 
         $user->assignRole('teacher');
@@ -47,6 +49,7 @@ class TeachersController extends Controller
         $teacher = new Teacher();
         $teacher->department_id = $request->department_id;
         $teacher->user_id = $user->id;
+        $teacher->uuid = Str::uuid();
         $teacher->save();
 
         return redirect(route('teachers.index'));

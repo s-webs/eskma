@@ -8,6 +8,7 @@ use App\Models\DepartmentHead;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class DepartmentHeadsController extends Controller
 {
@@ -47,6 +48,7 @@ class DepartmentHeadsController extends Controller
         $teacher = new DepartmentHead();
         $teacher->department_id = $request->department_id;
         $teacher->user_id = $user->id;
+        $teacher->uuid = Str::uuid();
         $teacher->save();
 
         return redirect(route('department-heads.index'));

@@ -16,13 +16,15 @@
                     <div class="card">
                         <div class="card-header">
                             @role('teacher')
-                            <h3 class="card-title">
-                                <a href="{{ route('add-students-to-practice', $practiceID) }}" type="button"
-                                   class="btn btn-block btn-primary btn-lg">Добавить</a>
-                            </h3>
+                            @if($practice->status === 1)
+                                <h3 class="card-title">
+                                    <a href="{{ route('add-students-to-practice', $practiceID) }}" type="button"
+                                       class="btn btn-block btn-primary btn-lg">Добавить</a>
+                                </h3>
+                            @endif
                             @endrole
                         </div>
-                        @livewire('list-students', ['practiceId' => $practiceID])
+                        @livewire('list-students', ['practiceId' => $practiceID, 'practice' => $practice])
                     </div>
                 </div>
             </div>

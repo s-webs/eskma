@@ -19,26 +19,30 @@
                        class="btn btn-primary btn-sm">
                         <i class="fas fa-eye"></i>
                     </a>
-                    <button type="submit" wire:click="deleteItem({{ $student->id }})" wire:loading.attr="disabled"
-                            class="btn btn bg-gradient-danger btn-sm">
-                        <style>
-                            .custom-spinner {
-                                transform: rotateX(0deg);
-                                animation: custom-spinner 0.9s linear infinite;
-                            }
-
-                            @keyframes custom-spinner {
-                                0% {
+                    @role('teacher')
+                    @if($practice->status === 1)
+                        <button type="submit" wire:click="deleteItem({{ $student->id }})" wire:loading.attr="disabled"
+                                class="btn btn bg-gradient-danger btn-sm">
+                            <style>
+                                .custom-spinner {
                                     transform: rotateX(0deg);
+                                    animation: custom-spinner 0.9s linear infinite;
                                 }
-                                100% {
-                                    transform: rotate(359deg);
+
+                                @keyframes custom-spinner {
+                                    0% {
+                                        transform: rotateX(0deg);
+                                    }
+                                    100% {
+                                        transform: rotate(359deg);
+                                    }
                                 }
-                            }
-                        </style>
-                        <span wire:loading.remove><i class="fas fa-trash"></i></span>
-                        <span wire:loading><i class="fas fa-spinner custom-spinner"></i></span>
-                    </button>
+                            </style>
+                            <span wire:loading.remove><i class="fas fa-trash"></i></span>
+                            <span wire:loading><i class="fas fa-spinner custom-spinner"></i></span>
+                        </button>
+                    @endif
+                    @endrole
                 </td>
             </tr>
         @endforeach

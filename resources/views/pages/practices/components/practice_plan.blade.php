@@ -2,14 +2,16 @@
     <div class="card-header">
         <h3 class="card-title">Рабочий план-график производственной практики</h3>
         <div class="card-tools">
-            @role('student')
-            @if($practice->plan->count() === 0)
-                <a href="{{ route('student.practices-add-plan', $practice->id) }}" type="button"
-                   class="btn btn-primary btn-sm">
-                    <i class="fas fa-plus"></i>
-                </a>
+            @if($practice->status === 1)
+                @role('student')
+                @if($practice->plan->count() === 0)
+                    <a href="{{ route('student.practices-add-plan', $practice->id) }}" type="button"
+                       class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                @endif
+                @endrole
             @endif
-            @endrole
             <button type="button" class="btn btn-tool" data-card-widget="collapse"
                     title="Collapse">
                 <i class="fas fa-minus"></i>
@@ -28,24 +30,26 @@
                                         <strong>{{ $plan->start }} - {{ $plan->end }}</strong>
                                     </h4>
                                     @role('student')
-                                    <div class="card-tools">
-                                        <a href="{{ route('student.practices-edit-plan', $plan->id) }}"
-                                           type="button"
-                                           class="btn btn-success btn-sm">
-                                            <i class="fas fa-pen"></i>
-                                        </a>
-                                        <form
-                                            action="{{ route('student.practices-delete-plan', $plan->id) }}"
-                                            method="post"
-                                            style="display: inline-block">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit"
-                                                    class="btn btn bg-gradient-danger btn-sm">
-                                                <i class="fas fa-trash"></i></button>
-                                        </form>
-                                    </div>
-                                    @endrole
+                                    @if($practice->status === 1)
+                                        <div class="card-tools">
+                                            <a href="{{ route('student.practices-edit-plan', $plan->id) }}"
+                                               type="button"
+                                               class="btn btn-success btn-sm">
+                                                <i class="fas fa-pen"></i>
+                                            </a>
+                                            <form
+                                                action="{{ route('student.practices-delete-plan', $plan->id) }}"
+                                                method="post"
+                                                style="display: inline-block">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                        class="btn btn bg-gradient-danger btn-sm">
+                                                    <i class="fas fa-trash"></i></button>
+                                            </form>
+                                        </div>
+                                        @endrole
+                                    @endif
                                 </div>
                                 <div class="card-body">
                                     <p>

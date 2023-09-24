@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Practice;
 
 use App\Http\Controllers\Controller;
 use App\Models\AcademicYear;
+use App\Models\Department;
+use App\Models\DepartmentHead;
 use App\Models\Practice;
 use App\Models\PracticeBaseUser;
 use Illuminate\Http\Request;
@@ -16,7 +18,22 @@ class PracticesController extends Controller
      */
     public function index()
     {
-        $data = Practice::paginate(20);
+        if (auth()->user()->hasRole('teacher')) {
+            $data = Practice::where('teacher_id', auth()->user()->teacher->id)->paginate(20);
+        } elseif (auth()->user()->hasRole('head_of_department')) {
+            $head = DepartmentHead::where('user_id', auth()->user()->id)->first();
+            $teachers = $head->teachers;
+            $data = collect();
+
+            foreach ($teachers as $teacher) {
+                $teacherPractices = $teacher->practices()->get();
+                $data = $data->concat($teacherPractices);
+            }
+        } elseif (auth()->user()->hasRole('base_user')) {
+            $data = Practice::where('practice_base_users_id', auth()->user()->baseUser->id)->paginate(20);
+        } else {
+            $data = Practice::all();
+        }
         return view('pages.practices.index', compact('data'));
     }
 
@@ -113,6 +130,18 @@ class PracticesController extends Controller
     {
         Practice::where('id', $id)->delete();
 
+        return redirect(route('practices.index'));
+    }
+
+    public function disable($id)
+    {
+        $practice = Practice::where('id', $id)->first();
+        if ($practice->status === 0) {
+            $practice->status = 1;
+        } else {
+            $practice->status = 0;
+        }
+        $practice->save();
         return redirect(route('practices.index'));
     }
 }
