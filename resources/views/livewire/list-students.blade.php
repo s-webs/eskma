@@ -19,6 +19,12 @@
                        class="btn btn-primary btn-sm">
                         <i class="fas fa-eye"></i>
                     </a>
+                    @isset($student->pdf_link)
+                        <a href="/{{ $student->pdf_link }}"
+                           class="btn btn-primary btn-sm">
+                            <i class="fas fa-file-pdf"></i>
+                        </a>
+                    @endisset
                     @role('teacher')
                     @if($practice->status === 1)
                         <button type="submit" wire:click="deleteItem({{ $student->id }})" wire:loading.attr="disabled"

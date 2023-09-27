@@ -23,4 +23,9 @@ class Practice extends Model
     {
         return $this->belongsTo(AcademicYear::class);
     }
+
+    public function baseUser()
+    {
+        return $this->belongsTo(PracticeBaseUser::class, 'practice_base_users_id', 'id');
+    }
 }

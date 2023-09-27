@@ -148,21 +148,21 @@
             @endforeach
 
             @isset($practice->pdf_link)
-                <a class="btn btn-app bg-primary">
+                <a href="/{{ $practice->pdf_link }}" class="btn btn-app bg-primary">
                     <i class="fas fa-file-download"></i> Скачать отчет
                 </a>
             @else
                 @role('student')
                 @if($practice->base_user_signature === 1 & $practice->teacher_signature === 1 & $practice->student_signature === 1 & $practice->head_of_department_signature === 1)
                     @if($practice->practice->status === 1)
-                        <a href="{{ route('generate-pdf', $practice->id) }}" class="btn btn-app bg-primary">
+                        <a href="{{ route('generate-report', $practice->id) }}" class="btn btn-app bg-primary">
                             <i class="fas fa-file-pdf"></i> Сформировать отчет
                         </a>
                     @endif
                 @else
-                    <button class="btn btn-app bg-primary disabled" disabled>
+                    <a class="btn btn-app bg-primary disabled" disabled>
                         <i class="fas fa-file-pdf"></i> Сформировать отчет
-                    </button>
+                    </a>
                 @endif
                 @endrole
             @endisset

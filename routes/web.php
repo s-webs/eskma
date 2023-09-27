@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +54,6 @@ Route::middleware('auth')->group(function () {
         Route::post('practices-student/{id}/store-total-grade', [\App\Http\Controllers\Practice\PracticeStudentsController::class, 'storeTotalGrade'])->name('store-total-grade');
         Route::get('practices-student/{id}/add-review', [\App\Http\Controllers\Practice\PracticeStudentsController::class, 'addReview'])->name('add-review');
         Route::post('practices-student/{id}/store-review', [\App\Http\Controllers\Practice\PracticeStudentsController::class, 'storeReview'])->name('store-review');
-        Route::get('practices-student/{id}/generate-report', [\App\Http\Controllers\Practice\PracticeStudentsController::class, 'generatePdf'])->name('generate-pdf');
 
     });
 
@@ -63,9 +65,10 @@ Route::middleware('auth')->group(function () {
         Route::get('practices/{id}/students/add', [\App\Http\Controllers\Practice\PracticeStudentsController::class, 'addStudents'])->name('add-students-to-practice');
     });
     Route::get('practices/{id}/detail', [\App\Http\Controllers\PracticeStudent\PracticesController::class, 'details'])->name('student.practices-details');
+
     Route::group(['middleware' => ['role:student']], function () {
         Route::get('practices-student', [\App\Http\Controllers\PracticeStudent\PracticesController::class, 'index'])->name('student.practices-index');
-
+        Route::get('practice/{id}/generate-report', [\App\Http\Controllers\PracticeStudent\PracticesController::class, 'generateReport'])->name('generate-report');
 
         Route::get('practices/{id}/add-plan', [\App\Http\Controllers\PracticeStudent\PracticePlansController::class, 'create'])->name('student.practices-add-plan');
         Route::post('practices/store-plan', [\App\Http\Controllers\PracticeStudent\PracticePlansController::class, 'store'])->name('student.practices-store-plan');
@@ -84,12 +87,6 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-
-Route::get('/test', function () {
-    $student = \App\Models\Student::where('id', 3)->first();
-    foreach ($student->practiceStudent as $item) {
-        dump($item);
-    }
-});
+Route::get('practices/{id}/public-detail', [\App\Http\Controllers\PracticeStudent\PracticesController::class, 'publicDetails'])->name('publicDetails');
 
 require __DIR__ . '/auth.php';
