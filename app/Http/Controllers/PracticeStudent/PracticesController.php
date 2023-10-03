@@ -36,6 +36,10 @@ class PracticesController extends Controller
 
     public function generateReport($id)
     {
+        $practice = PracticeStudent::where('id', $id)->first();
+        $practice->report_status = 'processing';
+        $practice->save();
+
         GenerateReportJob::dispatch($id)->onQueue('reports');
 
         return redirect(route('student.practices-details', $id));

@@ -27,6 +27,8 @@
 
     <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.min.css">
     <link rel="icon" href="/assets/images/icon.png">
+    @vite(['resources/js/app.js'])
+    @stack('custom-styles')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -234,8 +236,8 @@
 
 <script src="/plugins/sparklines/sparkline.js"></script>
 
-<script src="/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+{{--<script src="/plugins/jqvmap/jquery.vmap.min.js"></script>--}}
+{{--<script src="/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>--}}
 
 <script src="/plugins/jquery-knob/jquery.knob.min.js"></script>
 
@@ -250,15 +252,16 @@
 
 <script src="/dist/js/adminlte.js?v=3.2.0"></script>
 
-<script src="/dist/js/demo.js"></script>
+{{--<script src="/dist/js/demo.js"></script>--}}
 
-<script src="/dist/js/pages/dashboard.js"></script>
+{{--<script src="/dist/js/pages/dashboard.js"></script>--}}
+@livewireScripts
+
 
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
 <script>
-    console.log("{{ csrf_token() }}")
     $('#summernote').summernote({
         callbacks: {
             onImageUpload: function (files) {
@@ -288,5 +291,6 @@
         }
     });
 </script>
+@stack('custom-scripts')
 </body>
 </html>

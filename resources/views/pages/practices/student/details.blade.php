@@ -60,6 +60,8 @@
                     <livewire:signature-component :practiceId="$practiceId" :role="'admin'"/>
                     @endrole
                     @include('pages.practices.components.add-signa-review', ['practice' => $practice])
+                    @include('pages.practices.components.report', ['practice' => $practice])
+
                 </div>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                     @include('pages.practices.components.practice_plan', ['practice' => $practice])

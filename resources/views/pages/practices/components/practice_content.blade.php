@@ -65,3 +65,36 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        $('#summernote').summernote({
+            callbacks: {
+                onImageUpload: function (files) {
+                    var editor = $(this);
+                    var formData = new FormData();
+                    formData.append('image', files[0]);
+                    console.log()
+                    // Отправляем изображение на сервер
+                    $.ajax({
+                        url: '/upload-image', // Замените '/upload-image' на ваш URL-адрес загрузки изображений
+                        method: 'POST',
+                        data: formData,
+                        headers: {
+                            'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                        },
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            var imageUrl = response.url; // URL загруженного изображения
+                            editor.summernote('insertImage', imageUrl);
+                        },
+                        error: function (response) {
+                            console.error('Ошибка загрузки изображения.');
+                        }
+                    });
+                }
+            }
+        });
+    </script>
+@endpush
