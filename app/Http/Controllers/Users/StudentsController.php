@@ -83,7 +83,10 @@ class StudentsController extends Controller
      */
     public function destroy(string $id)
     {
-        Student::where('id', $id)->delete();
+        $student = Student::where('id', $id)->first();
+        $user = $student->user;
+        $user->removeRole('student');
+        $user->delete();
         return redirect(route('students.index'));
     }
 }

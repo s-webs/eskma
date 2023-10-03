@@ -22,7 +22,8 @@
                             </h3>
                         </div>
                         <div class="card-body">
-                            <p><strong>Образовательная программа:</strong> "Фармация"</p>
+                            <p><strong>Образовательная
+                                    программа:</strong> {{ $practice->student->group->educationProgram->name_ru }}</p>
                             <p><strong>Обучающийся:</strong>
                                 {{ $practice->student->user->surname }}
                                 {{ $practice->student->user->name }}
@@ -62,7 +63,7 @@
                 </div>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                     @include('pages.practices.components.practice_plan', ['practice' => $practice])
-                    @include('pages.practices.components.practice_content', ['practice' => $practice])
+                    @include('pages.practices.components.practice_content', ['practiceContent' => $practiceContent])
                 </div>
             </div>
         </div>

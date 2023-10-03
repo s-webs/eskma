@@ -2,11 +2,11 @@
     <div class="card-header">
         <h3 class="card-title">Рабочий план-график производственной практики</h3>
         <div class="card-tools">
-            @if($practice->status === 1)
+            @if($practice->practice->status === 1)
                 @role('student')
                 @if($practice->plan->count() === 0)
                     <a href="{{ route('student.practices-add-plan', $practice->id) }}" type="button"
-                       class="btn btn-primary btn-sm">
+                       class="btn btn-success btn-sm border-white">
                         <i class="fas fa-plus"></i>
                     </a>
                 @endif

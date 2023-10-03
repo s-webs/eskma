@@ -3,7 +3,7 @@
         <h3 class="card-title">Содержание производственной практики</h3>
         <div class="card-tools">
             @role('student')
-            @if($practice->status === 1)
+            @if($practice->practice->status === 1)
                 <a href="{{ route('student.practices-add-content', $practice->id) }}" type="button"
                    class="btn btn-success btn-sm border-white">
                     <i class="fas fa-plus"></i>
@@ -21,7 +21,7 @@
             <div class="col-12 col-md-12 col-lg-12 order-2 order-md-1">
                 <div class="row">
                     <div class="col-12">
-                        @foreach($practice->content as $content)
+                        @foreach($practiceContent as $content)
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">

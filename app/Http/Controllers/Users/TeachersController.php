@@ -41,7 +41,6 @@ class TeachersController extends Controller
         $user->patronymic = 'null';
         $user->email = $request->email;
         $user->password = Hash::make('SkmaTeacher123!@#');
-        $user->uuid =
         $user->save();
 
         $user->assignRole('teacher');
@@ -84,6 +83,11 @@ class TeachersController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $teacher = Teacher::where('id', $id)->first();
+        $user = $teacher->user;
+        $user->removeRole('teacher');
+        $user->delete();
+
+        return redirect(route('teachers.index'));
     }
 }

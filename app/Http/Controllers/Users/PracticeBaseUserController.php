@@ -48,7 +48,6 @@ class PracticeBaseUserController extends Controller
         $baseUser = new PracticeBaseUser();
         $baseUser->practice_base_id = $request->practice_base_id;
         $baseUser->user_id = $user->id;
-        $teacher->uuid = Str::uuid();
         $baseUser->save();
 
         return redirect(route('practice-base-users.index'));
@@ -85,6 +84,7 @@ class PracticeBaseUserController extends Controller
     {
         $baseUser = PracticeBaseUser::where('id', $id)->first();
         $user = User::where('id', $baseUser->user_id)->first();
+        $user->removeRole('base_user');
         $user->delete();
 
         return redirect(route('practice-base-users.index'));
